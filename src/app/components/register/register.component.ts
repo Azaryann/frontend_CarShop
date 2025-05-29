@@ -23,7 +23,6 @@ export class RegisterComponent {
   onSubmit() {
     this.authService.register(this.authRequest).subscribe({
       next: (response) => {
-        // После успешной регистрации выполняем вход
         this.authService.login(this.authRequest).subscribe({
           next: () => {
             alert('Регистрация успешна!');
