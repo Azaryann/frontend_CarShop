@@ -1,0 +1,66 @@
+<div class="dashboard">
+  <h1>Welcome Car Shop</h1>
+  <ng-container *ngIf="authService.getCurrentUser(); else notLoggedIn">
+    <p>
+      Logged in as: {{ authService.getCurrentUser()?.username }}
+    </p>
+    <p>You have successfully logged in!</p>
+    <button class="btn" (click)="authService.logout()" routerLink="/login">Logout</button>
+  </ng-container>
+  <ng-template #notLoggedIn>
+    <p>You need to log in to access this page</p>
+  </ng-template>
+
+  <!-- Login/Register buttons only for unauthorized users -->
+  <div class="auth-buttons" *ngIf="!authService.getCurrentUser()">
+    <button class="btn" routerLink="/login">Login</button>
+    <button class="btn" routerLink="/register">Register</button>
+  </div>
+</div>
+
+<div class="dashboard-container">
+  <h2>Dashboard</h2>
+
+  <div class="purchasers-section">
+    <h3>Purchasers</h3>
+    <button (click)="onAdd()" class="add-button">Add Purchaser</button>
+
+    <div *ngIf="selectedPurchaser" class="form-container">
+      <h4>{{ isEditing ? 'Edit' : 'Add' }} Purchaser</h4>
+      <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input id="name" type="text" [(ngModel)]="selectedPurchaser.name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input id="email" type="email" [(ngModel)]="selectedPurchaser.email" name="email" required>
+        </div>
+        <button type="submit">{{ isEditing ? 'Update' : 'Create' }}</button>
+        <button type="button" (click)="selectedPurchaser = null">Cancel</button>
+      </form>
+    </div>
+
+    <table class="purchasers-table">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <!--        <th>Actions</th>-->
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let purchaser of purchasers">
+        <td>{{ purchaser.id }}</td>
+        <td>{{ purchaser.name }}</td>
+        <td>{{ purchaser.email }}</td>
+        <!--        <td>-->
+        <!--          <button (click)="onEdit(purchaser)">Edit</button>-->
+        <!--          <button (click)="onDelete(purchaser.id!)">Delete</button>-->
+        <!--        </td>-->
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

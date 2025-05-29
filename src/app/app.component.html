@@ -1,0 +1,64 @@
+
+<header class="header">
+  <nav class="nav-container">
+    <div class="logo">
+      <img
+        src="https://www.shutterstock.com/shutterstock/photos/2508913533/display_1500/stock-vector-majestic-logo-design-representing-a-luxury-auto-dealership-showcasing-sleek-lines-and-elegance-2508913533.jpg"
+        alt="Logo" width="50" height="50">
+      <span class="brand-name">CarShop</span>
+    </div>
+
+    <div class="nav-links">
+      <!-- Home -->
+<!--      <a routerLink="/"-->
+<!--         routerLinkActive="active"-->
+<!--         [routerLinkActiveOptions]="{exact: true}"-->
+<!--         class="nav-link">-->
+<!--        <i class="fas fa-home"></i>-->
+<!--        Home-->
+<!--      </a>-->
+
+      <!-- Cars link -->
+      <a routerLink="/cars"
+         routerLinkActive="active"
+         class="nav-link">
+        <i class="fas fa-car"></i>
+        Cars
+      </a>
+
+      <!-- Unauthorized user -->
+      <ng-container *ngIf="!isLoggedIn">
+        <a routerLink="/login"
+           routerLinkActive="active"
+           class="nav-link">
+          <i class="fas fa-sign-in-alt"></i>
+          Login
+        </a>
+        <a routerLink="/register"
+           routerLinkActive="active"
+           class="nav-link">
+          <i class="fas fa-user-plus"></i>
+          Register
+        </a>
+      </ng-container>
+
+      <!-- Authorized user -->
+      <ng-container *ngIf="isLoggedIn">
+        <!--        <a routerLink="/profile"-->
+        <!--           routerLinkActive="active"-->
+        <!--           class="nav-link">-->
+        <!--          <i class="fas fa-user-circle"></i>-->
+        <!--          Profile-->
+        <!--        </a>-->
+        <button class="logout-btn" (click)="logout()">
+          <i class="fas fa-sign-out-alt"></i>
+          Logout
+        </button>
+      </ng-container>
+    </div>
+  </nav>
+</header>
+
+<main class="main-container">
+  <router-outlet></router-outlet>
+</main>
