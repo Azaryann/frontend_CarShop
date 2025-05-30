@@ -55,20 +55,11 @@ export class CarComponent implements OnInit {
   onSubmit(): void {
     if (!this.selectedCar) return;
     if (this.isEditing && this.selectedCar.id) {
-      this.carService.updateCar(this.selectedCar.id, this.selectedCar)
+      this.carService.updateCar(this.selectedCar.id, this.selectedCar, this.imageFile || undefined)
         .subscribe(() => {
-          if (this.imageFile) {
-            this.carService.uploadCarImage(this.selectedCar!.id!, this.imageFile)
-              .subscribe(() => {
-                this.loadCars();
-                this.selectedCar = null;
-                this.imageFile = null;
-              });
-          } else {
-            this.loadCars();
-            this.selectedCar = null;
-            this.imageFile = null;
-          }
+          this.loadCars();
+          this.selectedCar = null;
+          this.imageFile = null;
         });
     } else {
       this.carService.createCar(this.selectedCar, this.imageFile!)

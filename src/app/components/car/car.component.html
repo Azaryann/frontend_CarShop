@@ -38,6 +38,10 @@
                alt="PhotoCar" />
         </td>
         <td class="actions-cell">
+          <button class="action-button edit" (click)="onEdit(car)" title="Edit">
+            <i class="fas fa-edit"></i>
+          </button>
+        <td class="actions-cell">
           <button class="action-button delete" (click)="onDelete(car.id!)" title="Delete">
             <i class="fas fa-trash"></i>
           </button>

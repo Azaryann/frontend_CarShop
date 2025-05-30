@@ -33,8 +33,13 @@ export class CarService {
     return this.http.post<CarDto>(this.apiUrl, formData);
   }
 
-  updateCar(id: number, car: CarDto): Observable<CarDto> {
-    return this.http.put<CarDto>(`${this.apiUrl}/${id}`, car);
+  updateCar(id: number, car: any, image?: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('car', new Blob([JSON.stringify(car)], { type: 'application/json' }));
+    if (image) {
+      formData.append('image', image);
+    }
+    return this.http.put(`${this.apiUrl}/${id}`, formData);
   }
 
   deleteCar(id: number): Observable<void> {
