@@ -1,3 +1,13 @@
+body {
+  background-image: url('https://images.wallpaperscraft.ru/image/single/noutbuk_chashka_ochki_114948_1920x1080.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
 .purchaser-list, .purchaser-form {
   padding: 20px;
   max-width: 1200px;
